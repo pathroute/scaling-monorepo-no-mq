@@ -1,0 +1,10 @@
+{
+  "id": "f-20261017233843-e39f",
+  "projects": [
+    "search",
+    "todo"
+  ],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
