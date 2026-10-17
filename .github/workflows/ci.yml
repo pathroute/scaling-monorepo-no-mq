@@ -1,0 +1,27 @@
+# M0 walking-skeleton CI. Replaced by the decide -> synthetic/real flow in M2 (PLAN.md, Component 4).
+name: ci
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  result:
+    # Required check name; must match REQUIRED_CHECK in infra/github/config.env.
+    name: ci/result
+    # Self-hosted runners on a public repo: only same-repo branches and merge queue runs reach them.
+    # (A skipped job on a fork PR does not run anything; fork PRs are never merged in this experiment.)
+    if: github.event_name == 'merge_group' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, synth]
+    timeout-minutes: 30
+    steps:
+      - name: Synthetic CI (skeleton)
+        env:
+          EVENT: ${{ github.event_name }}
+          SHA: ${{ github.sha }}
+        run: |
+          echo "event=$EVENT sha=$SHA runner=$RUNNER_NAME"
+          sleep 30

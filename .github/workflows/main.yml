@@ -1,0 +1,25 @@
+# M0 walking-skeleton post-merge CI on main. Feeds the revert bot from M4 on.
+name: main
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: main-${{ github.sha }}
+
+jobs:
+  result:
+    name: main/result
+    runs-on: [self-hosted, synth]
+    timeout-minutes: 30
+    steps:
+      - name: Synthetic post-merge CI (skeleton)
+        env:
+          SHA: ${{ github.sha }}
+        run: |
+          echo "sha=$SHA runner=$RUNNER_NAME"
+          sleep 30
