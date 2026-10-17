@@ -1,0 +1,7 @@
+{
+  "id": "f-20261017215922-f6c7",
+  "projects": ["accounts","libs-go-db","todo-web"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
