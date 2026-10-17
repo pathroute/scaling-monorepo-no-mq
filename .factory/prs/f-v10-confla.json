@@ -1,0 +1,7 @@
+{
+  "id": "f-v10-confla",
+  "projects": ["billing"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
