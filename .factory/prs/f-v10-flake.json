@@ -1,0 +1,7 @@
+{
+  "id": "f-v10-flake",
+  "projects": ["ci-selftest-flaky"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
