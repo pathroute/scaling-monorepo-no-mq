@@ -1,0 +1,7 @@
+{
+  "id": "f-20261017215910-79ef",
+  "projects": ["libs-go-platform"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
