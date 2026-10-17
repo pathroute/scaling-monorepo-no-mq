@@ -1,0 +1,6 @@
+# Synthetic CI profiles, read by factory-ci on every run (PLAN.md, Component 6).
+# Projects not listed use `default`. WI-11 replaces this with the full placeholder project list.
+projects:
+  default: { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.0 }
+  # Verification only: PRs that touch this project always flake.
+  ci-selftest-flaky: { duration_p50: 20s, duration_p95: 30s, flake_rate: 1.0 }

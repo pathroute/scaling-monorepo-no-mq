@@ -1,4 +1,4 @@
-# M0 walking-skeleton CI. Replaced by the decide -> synthetic/real flow in M2 (PLAN.md, Component 4).
+# Synthetic CI (PLAN.md, Component 4). factory-ci is built into the synth runner image.
 name: ci
 
 on:
@@ -16,12 +16,12 @@ jobs:
     # (A skipped job on a fork PR does not run anything; fork PRs are never merged in this experiment.)
     if: github.event_name == 'merge_group' || github.event.pull_request.head.repo.full_name == github.repository
     runs-on: [self-hosted, synth]
-    timeout-minutes: 30
+    timeout-minutes: 50
     steps:
-      - name: Synthetic CI (skeleton)
-        env:
-          EVENT: ${{ github.event_name }}
-          SHA: ${{ github.sha }}
-        run: |
-          echo "event=$EVENT sha=$SHA runner=$RUNNER_NAME"
-          sleep 30
+      # Depth 1 is enough: factory-ci fetches the base commit itself and only diffs trees.
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      # Decides pass/fail and duration from .factory/ in this tree; no retries (flakes are measured raw).
+      - name: Synthetic CI
+        run: factory-ci

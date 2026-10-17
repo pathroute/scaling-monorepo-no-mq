@@ -1,4 +1,4 @@
-# M0 walking-skeleton post-merge CI on main. Feeds the revert bot from M4 on.
+# Post-merge synthetic CI on main: same logic as ci.yml on the pushed commit. Feeds the revert bot.
 name: main
 
 on:
@@ -15,11 +15,10 @@ jobs:
   result:
     name: main/result
     runs-on: [self-hosted, synth]
-    timeout-minutes: 30
+    timeout-minutes: 50
     steps:
-      - name: Synthetic post-merge CI (skeleton)
-        env:
-          SHA: ${{ github.sha }}
-        run: |
-          echo "sha=$SHA runner=$RUNNER_NAME"
-          sleep 30
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      - name: Synthetic CI
+        run: factory-ci
