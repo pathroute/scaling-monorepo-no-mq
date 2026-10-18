@@ -1,0 +1,7 @@
+{
+  "id": "f-20261018155206-2abb",
+  "projects": ["todo-web","accounts"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
