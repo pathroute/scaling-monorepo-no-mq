@@ -1,0 +1,25 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "admin-api",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/admin-api",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/admin-api/api",
+    ],
+)
+
+go_test(
+    name = "admin-api_test",
+    srcs = ["server_test.go"],
+    embed = [":admin-api"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/admin-api/api",
+    ],
+)

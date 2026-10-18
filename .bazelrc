@@ -1,0 +1,8 @@
+# Bazel 9 defaults to bzlmod; WORKSPACE is gone.
+common --lockfile_mode=update
+# Opt out of Aspect's ruleset usage telemetry (rules_js/rules_ts/rules_jest).
+common --repo_env=DO_NOT_TRACK=1
+build --incompatible_strict_action_env
+test --test_output=errors
+# Local overrides (not committed).
+try-import %workspace%/user.bazelrc

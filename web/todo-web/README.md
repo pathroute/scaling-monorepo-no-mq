@@ -2,4 +2,6 @@
 
 TypeScript frontend for todo.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //web/todo-web/...`
+- Bundle: `bazel build //web/todo-web:bundle`.
+- Depends on: `libs/ts/ui-kit`, `libs/ts/api-client`.

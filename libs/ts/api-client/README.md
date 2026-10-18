@@ -2,4 +2,5 @@
 
 Shared TypeScript lib: API client. Hotspot.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //libs/ts/api-client/...`
+- Used by: all 4 web apps. Changes here re-test all of them.

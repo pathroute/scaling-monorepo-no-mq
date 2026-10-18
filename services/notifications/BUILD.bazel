@@ -1,0 +1,23 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "notifications",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/notifications",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/notifications/api",
+    ],
+)
+
+go_test(
+    name = "notifications_test",
+    srcs = ["server_test.go"],
+    embed = [":notifications"],
+    deps = [
+        "//libs/go/platform/platformtest",
+        "//services/notifications/api",
+    ],
+)

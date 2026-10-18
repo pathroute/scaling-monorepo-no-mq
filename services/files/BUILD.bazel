@@ -1,0 +1,25 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "files",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/files",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/files/api",
+    ],
+)
+
+go_test(
+    name = "files_test",
+    srcs = ["server_test.go"],
+    embed = [":files"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/files/api",
+    ],
+)

@@ -2,4 +2,5 @@
 
 Shared Go lib: AI provider client. Hotspot.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //libs/go/aiclient/...`
+- Used by: ai-gateway, issues, mail-tracker, todo (4). Changes here re-test all of them.

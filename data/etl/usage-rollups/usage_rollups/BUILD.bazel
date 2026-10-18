@@ -1,0 +1,26 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("//tools/python:pytest.bzl", "py_pytest_test")
+
+py_library(
+    name = "usage_rollups",
+    srcs = [
+        "__init__.py",
+        "rollup.py",
+    ],
+    imports = [".."],
+    visibility = ["//data/etl/usage-rollups:__subpackages__"],
+    deps = [
+        "//libs/py/common/pathroute_common",
+        "@pypi//polars",
+    ],
+)
+
+py_pytest_test(
+    name = "rollup_test",
+    srcs = ["rollup_test.py"],
+    imports = [".."],
+    deps = [
+        ":usage_rollups",
+        "@pypi//polars",
+    ],
+)

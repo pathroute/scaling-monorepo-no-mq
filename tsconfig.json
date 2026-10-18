@@ -1,0 +1,17 @@
+{
+  // Shared by every ts_project (//:tsconfig). Native ESM: relative imports end in .js.
+  "compilerOptions": {
+    "target": "es2023",
+    "lib": ["es2023", "dom", "dom.iterable"],
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "declaration": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    // jest-dom matchers on @jest/globals expect, in every test file.
+    "types": ["@testing-library/jest-dom/jest-globals"]
+  }
+}

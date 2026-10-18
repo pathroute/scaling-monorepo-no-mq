@@ -1,0 +1,33 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "search",
+    srcs = [
+        "index.go",
+        "server.go",
+    ],
+    importpath = "github.com/pathroute/suite/services/search",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/platform",
+        "//services/issues/api",
+        "//services/mail-tracker/api",
+        "//services/search/api",
+        "//services/todo/api",
+    ],
+)
+
+go_test(
+    name = "search_test",
+    srcs = ["search_test.go"],
+    embed = [":search"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/issues/api",
+        "//services/mail-tracker/api",
+        "//services/search/api",
+        "//services/todo/api",
+    ],
+)

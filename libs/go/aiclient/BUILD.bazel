@@ -1,0 +1,14 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "aiclient",
+    srcs = ["aiclient.go"],
+    importpath = "github.com/pathroute/suite/libs/go/aiclient",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "aiclient_test",
+    srcs = ["aiclient_test.go"],
+    embed = [":aiclient"],
+)

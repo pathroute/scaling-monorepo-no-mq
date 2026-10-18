@@ -1,0 +1,28 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("//tools/python:pytest.bzl", "py_pytest_test")
+
+py_library(
+    name = "billing_events",
+    srcs = [
+        "__init__.py",
+        "transform.py",
+    ],
+    imports = [".."],
+    visibility = ["//data/etl/billing-events:__subpackages__"],
+    deps = [
+        "//libs/py/common/pathroute_common",
+        "@pypi//polars",
+    ],
+)
+
+py_pytest_test(
+    name = "transform_test",
+    srcs = ["transform_test.py"],
+    imports = [".."],
+    deps = [
+        ":billing_events",
+        "//libs/py/common/pathroute_common",
+        "@pypi//polars",
+        "@pypi//pytest",
+    ],
+)

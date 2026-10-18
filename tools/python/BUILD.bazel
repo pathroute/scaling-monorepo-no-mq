@@ -1,0 +1,27 @@
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+# gazelle:ignore
+
+exports_files(["pytest_main.py"])
+
+sh_binary(
+    name = "requirements.update",
+    srcs = ["update_requirements.sh"],
+    args = ["$(rootpath @multitool//tools/uv)"],
+    data = ["@multitool//tools/uv"],
+)
+
+sh_test(
+    name = "requirements_test",
+    size = "small",
+    srcs = ["requirements_test.sh"],
+    args = [
+        "$(rootpath //:uv.lock)",
+        "$(rootpath //:requirements_lock.txt)",
+    ],
+    data = [
+        "//:requirements_lock.txt",
+        "//:uv.lock",
+    ],
+)

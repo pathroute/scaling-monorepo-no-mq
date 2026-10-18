@@ -2,4 +2,5 @@
 
 Shared Go lib: authorization. Hotspot.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //libs/go/authz/...`
+- Used by: every service except notifications (9). Changes here re-test all of them.

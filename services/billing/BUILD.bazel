@@ -1,0 +1,28 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "billing",
+    srcs = [
+        "pricing.go",
+        "server.go",
+    ],
+    importpath = "github.com/pathroute/suite/services/billing",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/billing/api",
+    ],
+)
+
+go_test(
+    name = "billing_test",
+    srcs = ["billing_test.go"],
+    embed = [":billing"],
+    deps = [
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/billing/api",
+    ],
+)

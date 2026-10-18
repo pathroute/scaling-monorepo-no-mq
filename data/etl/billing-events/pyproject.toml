@@ -1,0 +1,16 @@
+[project]
+name = "billing-events"
+version = "0.1.0"
+description = "Billing events to warehouse tables."
+requires-python = ">=3.13,<3.14"
+dependencies = ["pathroute-common", "polars==1.44.2"]
+
+[build-system]
+requires = ["uv_build>=0.12.24,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+[tool.uv.sources]
+pathroute-common = { workspace = true }

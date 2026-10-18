@@ -1,0 +1,9 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "api",
+    srcs = ["api.go"],
+    importpath = "github.com/pathroute/suite/services/ai-gateway/api",
+    visibility = ["//visibility:public"],
+    deps = ["//libs/go/aiclient"],
+)

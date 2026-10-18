@@ -2,4 +2,5 @@
 
 Python ETL: billing events into warehouse tables.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //data/etl/billing-events/...`
+- Depends on: `libs/py/common`, polars.

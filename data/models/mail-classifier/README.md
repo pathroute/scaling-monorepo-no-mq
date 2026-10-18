@@ -2,4 +2,5 @@
 
 Python model: email classification.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //data/models/mail-classifier/...`
+- Depends on: scikit-learn (not `libs/py/common` yet).

@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mail-tracker",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/mail-tracker",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/mail-tracker/api",
+    ],
+)
+
+go_test(
+    name = "mail-tracker_test",
+    srcs = ["server_test.go"],
+    embed = [":mail-tracker"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/mail-tracker/api",
+    ],
+)

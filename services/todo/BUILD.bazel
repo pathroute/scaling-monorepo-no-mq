@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "todo",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/todo",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/todo/api",
+    ],
+)
+
+go_test(
+    name = "todo_test",
+    srcs = ["server_test.go"],
+    embed = [":todo"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/todo/api",
+    ],
+)

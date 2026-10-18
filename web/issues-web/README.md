@@ -2,4 +2,6 @@
 
 TypeScript frontend for issues.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //web/issues-web/...`
+- Bundle: `bazel build //web/issues-web:bundle`.
+- Depends on: `libs/ts/ui-kit`, `libs/ts/api-client`.

@@ -1,0 +1,29 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("//tools/python:pytest.bzl", "py_pytest_test")
+
+py_library(
+    name = "churn",
+    srcs = [
+        "__init__.py",
+        "model.py",
+    ],
+    imports = [".."],
+    visibility = ["//data/models/churn:__subpackages__"],
+    deps = [
+        "//libs/py/common/pathroute_common",
+        "@pypi//numpy",
+        "@pypi//polars",
+        "@pypi//scikit_learn",
+    ],
+)
+
+py_pytest_test(
+    name = "model_test",
+    srcs = ["model_test.py"],
+    imports = [".."],
+    deps = [
+        ":churn",
+        "@pypi//numpy",
+        "@pypi//polars",
+    ],
+)

@@ -1,0 +1,4 @@
+# gazelle:python_extension enabled
+# gazelle:python_root
+# Shared lib: every data project depends on it.
+# gazelle:python_visibility //visibility:public

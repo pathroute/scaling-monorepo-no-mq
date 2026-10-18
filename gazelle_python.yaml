@@ -1,0 +1,25 @@
+# GENERATED FILE - DO NOT EDIT!
+#
+# To update this file, run:
+#   bazel run //:gazelle_python_manifest.update
+
+---
+manifest:
+  modules_mapping:
+    cloudpickle: cloudpickle
+    iniconfig: iniconfig
+    joblib: joblib
+    narwhals: narwhals
+    numpy: numpy
+    packaging: packaging
+    pluggy: pluggy
+    polars: polars
+    py: pytest
+    pygments: pygments
+    pytest: pytest
+    scipy: scipy
+    sklearn: scikit_learn
+    threadpoolctl: threadpoolctl
+  pip_repository:
+    name: pypi
+integrity: 17bd6c82700157fada877489033d3e20b980f24567416c953e72863bb7c19772

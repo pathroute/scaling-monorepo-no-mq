@@ -1,0 +1,15 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//tools/ts:defs.bzl", "web_app")
+
+npm_link_all_packages(name = "node_modules")
+
+web_app(
+    deps = [
+        ":node_modules/@suite/api-client",
+        ":node_modules/@suite/ui-kit",
+        "//:node_modules/@types/react",
+        "//:node_modules/@types/react-dom",
+        "//:node_modules/react",
+        "//:node_modules/react-dom",
+    ],
+)

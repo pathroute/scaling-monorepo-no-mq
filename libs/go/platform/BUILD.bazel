@@ -1,0 +1,18 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "platform",
+    srcs = [
+        "config.go",
+        "http.go",
+        "log.go",
+    ],
+    importpath = "github.com/pathroute/suite/libs/go/platform",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "platform_test",
+    srcs = ["platform_test.go"],
+    embed = [":platform"],
+)

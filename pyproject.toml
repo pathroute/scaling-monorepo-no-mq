@@ -1,0 +1,17 @@
+# uv workspace for the Python projects (libs/py, data/). Bazel reads requirements_lock.txt,
+# which `bazel run //tools/python:requirements.update` regenerates from uv.lock.
+[tool.uv.workspace]
+members = [
+    "libs/py/common",
+    "data/etl/billing-events",
+    "data/etl/usage-rollups",
+    "data/models/churn",
+    "data/models/mail-classifier",
+    "data/pipelines/search-index",
+]
+
+[tool.uv]
+required-version = "==0.12.24"
+
+[dependency-groups]
+dev = ["pytest==9.1.1"]

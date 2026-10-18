@@ -1,0 +1,23 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("//tools/python:pytest.bzl", "py_pytest_test")
+
+py_library(
+    name = "mail_classifier",
+    srcs = [
+        "__init__.py",
+        "classifier.py",
+    ],
+    imports = [".."],
+    visibility = ["//data/models/mail-classifier:__subpackages__"],
+    deps = ["@pypi//scikit_learn"],
+)
+
+py_pytest_test(
+    name = "classifier_test",
+    srcs = ["classifier_test.py"],
+    imports = [".."],
+    deps = [
+        ":mail_classifier",
+        "@pypi//pytest",
+    ],
+)

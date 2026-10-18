@@ -1,0 +1,55 @@
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config")
+load("@gazelle//:def.bzl", "gazelle", "gazelle_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("@pypi//:requirements.bzl", "all_whl_requirements")
+load("@rules_python_gazelle_plugin//manifest:defs.bzl", "gazelle_python_manifest")
+load("@rules_python_gazelle_plugin//modules_mapping:def.bzl", "modules_mapping")
+
+# gazelle:prefix github.com/pathroute/suite
+# gazelle:exclude node_modules
+# gazelle:exclude .venv
+# gazelle:python_extension disabled
+# gazelle:python_test_file_pattern *_test.py
+# gazelle:map_kind py_test py_pytest_test //tools/python:pytest.bzl
+
+# Third-party npm packages (root package.json): //:node_modules/<name>
+npm_link_all_packages(name = "node_modules")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = ["//visibility:public"],
+)
+
+exports_files([
+    "requirements_lock.txt",
+    "uv.lock",
+])
+
+gazelle_binary(
+    name = "gazelle_bin",
+    languages = [
+        "@gazelle//language/go",
+        "@rules_python_gazelle_plugin//python",
+    ],
+)
+
+# Regenerates Go and Python BUILD files: bazel run //:gazelle
+gazelle(
+    name = "gazelle",
+    gazelle = ":gazelle_bin",
+)
+
+# Maps Python imports to @pypi targets for Gazelle.
+# Regenerate after changing dependencies: bazel run //:gazelle_python_manifest.update
+modules_mapping(
+    name = "modules_map",
+    wheels = all_whl_requirements,
+)
+
+gazelle_python_manifest(
+    name = "gazelle_python_manifest",
+    lockfiles = "//:uv.lock",
+    modules_mapping = ":modules_map",
+    pip_repository_name = "pypi",
+)

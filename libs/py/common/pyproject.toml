@@ -1,0 +1,13 @@
+[project]
+name = "pathroute-common"
+version = "0.1.0"
+description = "Shared Python utils: config, logging, schema checks, IO."
+requires-python = ">=3.13,<3.14"
+dependencies = ["polars==1.44.2"]
+
+[build-system]
+requires = ["uv_build>=0.12.24,<0.13"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""

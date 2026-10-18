@@ -1,0 +1,28 @@
+load("@rules_python//python:defs.bzl", "py_library")
+load("//tools/python:pytest.bzl", "py_pytest_test")
+
+py_library(
+    name = "search_index",
+    srcs = [
+        "__init__.py",
+        "index.py",
+    ],
+    imports = [".."],
+    visibility = ["//data/pipelines/search-index:__subpackages__"],
+    deps = [
+        "//libs/py/common/pathroute_common",
+        "@pypi//numpy",
+        "@pypi//polars",
+        "@pypi//scikit_learn",
+    ],
+)
+
+py_pytest_test(
+    name = "index_test",
+    srcs = ["index_test.py"],
+    imports = [".."],
+    deps = [
+        ":search_index",
+        "@pypi//polars",
+    ],
+)

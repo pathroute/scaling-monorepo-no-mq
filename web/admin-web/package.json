@@ -1,0 +1,10 @@
+{
+  "name": "@suite/admin-web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@suite/api-client": "workspace:*",
+    "@suite/ui-kit": "workspace:*"
+  }
+}

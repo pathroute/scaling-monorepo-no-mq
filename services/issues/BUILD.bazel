@@ -1,0 +1,27 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "issues",
+    srcs = ["server.go"],
+    importpath = "github.com/pathroute/suite/services/issues",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/db",
+        "//libs/go/platform",
+        "//services/issues/api",
+    ],
+)
+
+go_test(
+    name = "issues_test",
+    srcs = ["server_test.go"],
+    embed = [":issues"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/platform/platformtest",
+        "//services/issues/api",
+    ],
+)

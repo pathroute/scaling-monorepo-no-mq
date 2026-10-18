@@ -2,4 +2,5 @@
 
 Python model: churn prediction.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //data/models/churn/...`
+- Depends on: `libs/py/common`, polars, scikit-learn.

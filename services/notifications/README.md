@@ -2,4 +2,6 @@
 
 Go service: email/push/webhook fan-out.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //services/notifications/...`
+- Binary: `bazel run //services/notifications/cmd/notifications` (listens on `PORT`, default 8080).
+- Depends on: `libs/go/platform`, `libs/go/db`.

@@ -1,0 +1,17 @@
+packages:
+  - "libs/ts/*"
+  - "web/*"
+# No hoisting at all, so `pnpm install` outside Bazel gives the same strict layout as rules_js:
+# a package can only import what it declares.
+hoist: false
+publicHoistPattern: []
+shamefullyHoist: false
+# No install scripts run.
+onlyBuiltDependencies: []
+packageExtensions:
+  # jest-dom's jest-globals types augment @jest/expect but don't declare it, so strict
+  # node_modules (pnpm, rules_js) can't resolve it from jest-dom.
+  "@testing-library/jest-dom":
+    peerDependencies:
+      "@jest/expect": "*"
+      "@jest/globals": "*"

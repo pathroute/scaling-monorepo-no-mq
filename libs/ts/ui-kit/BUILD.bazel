@@ -1,0 +1,12 @@
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//tools/ts:defs.bzl", "ts_package")
+
+npm_link_all_packages(name = "node_modules")
+
+ts_package(
+    publish = True,
+    deps = [
+        "//:node_modules/@types/react",
+        "//:node_modules/react",
+    ],
+)

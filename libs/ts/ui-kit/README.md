@@ -2,4 +2,5 @@
 
 Shared TypeScript lib: UI components. Hotspot.
 
-Placeholder: synthetic CI only (`.factory/projects.yaml`). Real code comes with the product suite.
+- Test: `bazel test //libs/ts/ui-kit/...`
+- Used by: all 4 web apps. Changes here re-test all of them.

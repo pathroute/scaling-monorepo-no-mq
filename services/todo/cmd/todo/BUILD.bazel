@@ -1,0 +1,20 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "todo_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/pathroute/suite/services/todo/cmd/todo",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/platform",
+        "//services/todo",
+    ],
+)
+
+go_binary(
+    name = "todo",
+    embed = [":todo_lib"],
+    visibility = ["//visibility:public"],
+)

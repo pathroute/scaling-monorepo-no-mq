@@ -1,0 +1,20 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "ai-gateway_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/pathroute/suite/services/ai-gateway/cmd/ai-gateway",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//libs/go/aiclient",
+        "//libs/go/authz",
+        "//libs/go/platform",
+        "//services/ai-gateway",
+    ],
+)
+
+go_binary(
+    name = "ai-gateway",
+    embed = [":ai-gateway_lib"],
+    visibility = ["//visibility:public"],
+)

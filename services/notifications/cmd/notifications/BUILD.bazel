@@ -1,0 +1,19 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "notifications_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/pathroute/suite/services/notifications/cmd/notifications",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//libs/go/platform",
+        "//services/notifications",
+        "//services/notifications/api",
+    ],
+)
+
+go_binary(
+    name = "notifications",
+    embed = [":notifications_lib"],
+    visibility = ["//visibility:public"],
+)

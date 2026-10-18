@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "description": "Third-party JS/TS dependencies for every web/ and libs/ts/ package (one version each).",
+  "devDependencies": {
+    "@jest/expect": "30.5.0",
+    "@jest/globals": "30.5.0",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "jest-cli": "30.5.0",
+    "jest-environment-jsdom": "30.5.0",
+    "jest-junit": "16.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}
