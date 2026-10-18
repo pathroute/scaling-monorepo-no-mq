@@ -1,7 +1,0 @@
-{
-  "id": "f-20261018153337-c0a1",
-  "projects": ["billing"],
-  "mode": "synthetic",
-  "breaks": false,
-  "conflicts_with": []
-}
