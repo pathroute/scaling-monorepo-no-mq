@@ -1,0 +1,7 @@
+{
+  "id": "f-20261018155143-2ea2",
+  "projects": ["admin-api"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
