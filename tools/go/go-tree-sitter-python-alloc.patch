@@ -1,0 +1,16 @@
+--- a/python/scanner.c
++++ b/python/scanner.c
+@@ -1,3 +1,13 @@
++// Patched (suite tools/go): use the C allocator directly instead of the root package's
++// ts_current_* pointers, which only ever point at malloc & co. cgo's per-package link step
++// can't see symbols defined in another package, and lld (hermetic_cc_toolchain on Linux)
++// rejects them as undefined.
++#include <stdlib.h>
++#define ts_malloc malloc
++#define ts_calloc calloc
++#define ts_realloc realloc
++#define ts_free free
++
+ #include "../array.h"
+ #include "parser.h"
+ 

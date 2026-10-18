@@ -3,6 +3,17 @@ common --lockfile_mode=update
 # Opt out of Aspect's ruleset usage telemetry (rules_js/rules_ts/rules_jest).
 common --repo_env=DO_NOT_TRACK=1
 build --incompatible_strict_action_env
+common --enable_platform_specific_config
+
+# Python: start py_binary/py_test with a bash launcher that runs the pinned CPython directly,
+# instead of `#!/usr/bin/env python3` (a bare Linux runner has no python3).
+common --@rules_python//python/config_settings:bootstrap_impl=script
+
+# C/C++ on Linux: only the pinned Zig toolchain (MODULE.bazel), never a host compiler.
+common:linux --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+# The Zig compiler caches under $HOME/.cache/zig; let sandboxed actions reach it.
+build:linux --sandbox_add_mount_pair=/home
+build:macos --sandbox_add_mount_pair=/Users
 test --test_output=errors
 # Local overrides (not committed).
 try-import %workspace%/user.bazelrc
