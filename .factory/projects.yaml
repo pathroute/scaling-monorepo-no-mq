@@ -1,43 +1,42 @@
 # Synthetic CI profiles, read by factory-ci on every run (PLAN.md, Component 6).
-# Testing phase: every project runs 30s/60s to save runner time; the realistic profiles are in
-# infra/github/projects-realistic.yaml (switch before real runs, PLAN.md WI-17).
-# Projects not listed use `default`. A PR's CI wall time is the max over the projects it touches.
+# Projects not listed use `default`. A PR's CI wall time is the max over the projects it touches,
+# so shared libs carry long profiles that stand in for rebuilding their dependents.
 # paths/owners are read by the factory, not by factory-ci.
 projects:
-  default: { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.0 }
+  default: { duration_p50: 240s, duration_p95: 600s, flake_rate: 0.005 }
   # Verification only: PRs that touch this project always flake.
   ci-selftest-flaky: { duration_p50: 20s, duration_p95: 30s, flake_rate: 1.0 }
 
   # services/
-  billing:            { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [services/billing], owners: [team-billing] }
-  ai-gateway:         { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.020, paths: [services/ai-gateway], owners: [team-ai] }
-  accounts:           { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [services/accounts], owners: [team-platform] }
-  todo:               { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [services/todo], owners: [team-todo] }
-  issues:             { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [services/issues], owners: [team-issues] }
-  mail-tracker:       { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [services/mail-tracker], owners: [team-mail] }
-  notifications:      { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [services/notifications], owners: [team-platform] }
-  search:             { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [services/search], owners: [team-search] }
-  files:              { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [services/files], owners: [team-platform] }
-  admin-api:          { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [services/admin-api], owners: [team-platform] }
+  billing:            { duration_p50: 300s, duration_p95: 720s, flake_rate: 0.010, paths: [services/billing], owners: [team-billing] }
+  ai-gateway:         { duration_p50: 180s, duration_p95: 420s, flake_rate: 0.020, paths: [services/ai-gateway], owners: [team-ai] }
+  accounts:           { duration_p50: 240s, duration_p95: 540s, flake_rate: 0.005, paths: [services/accounts], owners: [team-platform] }
+  todo:               { duration_p50: 180s, duration_p95: 420s, flake_rate: 0.005, paths: [services/todo], owners: [team-todo] }
+  issues:             { duration_p50: 180s, duration_p95: 420s, flake_rate: 0.005, paths: [services/issues], owners: [team-issues] }
+  mail-tracker:       { duration_p50: 240s, duration_p95: 600s, flake_rate: 0.010, paths: [services/mail-tracker], owners: [team-mail] }
+  notifications:      { duration_p50: 210s, duration_p95: 480s, flake_rate: 0.015, paths: [services/notifications], owners: [team-platform] }
+  search:             { duration_p50: 300s, duration_p95: 720s, flake_rate: 0.010, paths: [services/search], owners: [team-search] }
+  files:              { duration_p50: 240s, duration_p95: 540s, flake_rate: 0.010, paths: [services/files], owners: [team-platform] }
+  admin-api:          { duration_p50: 150s, duration_p95: 360s, flake_rate: 0.005, paths: [services/admin-api], owners: [team-platform] }
 
   # web/
-  todo-web:           { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [web/todo-web], owners: [team-todo] }
-  issues-web:         { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [web/issues-web], owners: [team-issues] }
-  mail-web:           { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [web/mail-web], owners: [team-mail] }
-  admin-web:          { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [web/admin-web], owners: [team-platform] }
+  todo-web:           { duration_p50: 240s, duration_p95: 540s, flake_rate: 0.015, paths: [web/todo-web], owners: [team-todo] }
+  issues-web:         { duration_p50: 240s, duration_p95: 540s, flake_rate: 0.015, paths: [web/issues-web], owners: [team-issues] }
+  mail-web:           { duration_p50: 240s, duration_p95: 540s, flake_rate: 0.015, paths: [web/mail-web], owners: [team-mail] }
+  admin-web:          { duration_p50: 180s, duration_p95: 420s, flake_rate: 0.010, paths: [web/admin-web], owners: [team-platform] }
 
   # data/
-  billing-events:     { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [data/etl/billing-events], owners: [team-data] }
-  usage-rollups:      { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [data/etl/usage-rollups], owners: [team-data] }
-  churn:              { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [data/models/churn], owners: [team-ml] }
-  mail-classifier:    { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.015, paths: [data/models/mail-classifier], owners: [team-ml] }
-  search-index:       { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [data/pipelines/search-index], owners: [team-search] }
+  billing-events:     { duration_p50: 420s, duration_p95: 900s, flake_rate: 0.010, paths: [data/etl/billing-events], owners: [team-data] }
+  usage-rollups:      { duration_p50: 360s, duration_p95: 840s, flake_rate: 0.010, paths: [data/etl/usage-rollups], owners: [team-data] }
+  churn:              { duration_p50: 600s, duration_p95: 1200s, flake_rate: 0.015, paths: [data/models/churn], owners: [team-ml] }
+  mail-classifier:    { duration_p50: 540s, duration_p95: 1200s, flake_rate: 0.015, paths: [data/models/mail-classifier], owners: [team-ml] }
+  search-index:       { duration_p50: 480s, duration_p95: 1080s, flake_rate: 0.010, paths: [data/pipelines/search-index], owners: [team-search] }
 
   # libs/
-  libs-go-platform:   { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [libs/go/platform], owners: [team-platform] }
-  libs-go-authz:      { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [libs/go/authz], owners: [team-platform] }
-  libs-go-db:         { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [libs/go/db], owners: [team-platform] }
-  libs-go-aiclient:   { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [libs/go/aiclient], owners: [team-ai] }
-  libs-ts-ui-kit:     { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [libs/ts/ui-kit], owners: [team-web] }
-  libs-ts-api-client: { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.005, paths: [libs/ts/api-client], owners: [team-web] }
-  libs-py-common:     { duration_p50: 30s, duration_p95: 60s, flake_rate: 0.010, paths: [libs/py/common], owners: [team-data] }
+  libs-go-platform:   { duration_p50: 600s, duration_p95: 1320s, flake_rate: 0.010, paths: [libs/go/platform], owners: [team-platform] }
+  libs-go-authz:      { duration_p50: 420s, duration_p95: 960s, flake_rate: 0.005, paths: [libs/go/authz], owners: [team-platform] }
+  libs-go-db:         { duration_p50: 480s, duration_p95: 1080s, flake_rate: 0.010, paths: [libs/go/db], owners: [team-platform] }
+  libs-go-aiclient:   { duration_p50: 360s, duration_p95: 840s, flake_rate: 0.010, paths: [libs/go/aiclient], owners: [team-ai] }
+  libs-ts-ui-kit:     { duration_p50: 480s, duration_p95: 1080s, flake_rate: 0.010, paths: [libs/ts/ui-kit], owners: [team-web] }
+  libs-ts-api-client: { duration_p50: 420s, duration_p95: 960s, flake_rate: 0.005, paths: [libs/ts/api-client], owners: [team-web] }
+  libs-py-common:     { duration_p50: 540s, duration_p95: 1200s, flake_rate: 0.010, paths: [libs/py/common], owners: [team-data] }
