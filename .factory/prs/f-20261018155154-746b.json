@@ -1,0 +1,7 @@
+{
+  "id": "f-20261018155154-746b",
+  "projects": ["billing"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
