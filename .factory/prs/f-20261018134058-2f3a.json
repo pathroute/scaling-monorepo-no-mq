@@ -1,0 +1,9 @@
+{
+  "id": "f-20261018134058-2f3a",
+  "projects": [
+    "mail-web"
+  ],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
