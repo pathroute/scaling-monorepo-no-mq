@@ -1,0 +1,7 @@
+{
+  "id": "f-20261018061658-5b92",
+  "projects": ["ci-selftest-flaky"],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
