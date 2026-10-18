@@ -1,0 +1,9 @@
+{
+  "id": "f-20261018130606-55a6",
+  "projects": [
+    "libs-py-common"
+  ],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
