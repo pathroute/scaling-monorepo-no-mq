@@ -1,0 +1,10 @@
+{
+  "id": "f-20261018161552-c3f3",
+  "projects": [
+    "admin-api",
+    "files"
+  ],
+  "mode": "synthetic",
+  "breaks": false,
+  "conflicts_with": []
+}
